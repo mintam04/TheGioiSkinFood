@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <script src="../lib/bootstrap.bundle.min.js"></script>
+    <script src="../lib/font-fontawesome-ae333ffef2.js"></script>
+
+    <script src="../lib/angular.min.js"></script>
+    <script src="../lib/angular-route.js"></script>
+
+    <script>
+        var app = angular.module("myApp", ['ngRoute']);
+
+        app.controller('navbarCtrl', function ($scope, $location) {
+            var urlParams = new URLSearchParams(window.location.search);
+            $scope.username = urlParams.get('username');
+        });
+        
+        // 4. Khai báo $routeProvider
+        app.config(function ($routeProvider) {
+            $routeProvider
+                .when("/quan-ly-danh-muc", {
+                    templateUrl: "danhmuc/quanlydanhmuc.html",
+                    controller: "quanLyDanhMucCtrl"
+                })
+                .when("/tao-moi-danh-muc", {
+                    templateUrl: "danhmuc/taomoidanhmuc.html",
+                    controller: "taoMoiDanhMucCtrl"
+                })
+                .when("/chinh-sua-danh-muc/:id", {
+                    templateUrl: "danhmuc/chinhsuadanhmuc.html",
+                    controller: "chinhSuaDanhMucCtrl"
+                }) 
+                .when("/chi-tiet-danh-muc/:id", {
+                    templateUrl: "danhmuc/chitietdanhmuc.html",
+                    controller: "chiTietDanhMucCtrl"
+                })//Hết danh mục
+                .when("/quan-ly-san-pham", {
+                    templateUrl: "sanpham/quanlysanpham.html",
+                    controller: "quanLySanPhamCtrl"
+                })
+                .when("/tao-moi-san-pham", {
+                    templateUrl: "sanpham/taomoisanpham.html",
+                    controller: "taoMoiSanPhamCtrl"
+                })
+                .when("/chinh-sua-san-pham/:id", {
+                    templateUrl: "sanpham/chinhsuasanpham.html",
+                    controller: "chinhSuaSanPhamCtrl"
+                })
+                .when("/chi-tiet-san-pham/:id", {
+                    templateUrl: "sanpham/chitietsanpham.html",
+                    controller: "chiTietSanPhamCtrl"
+                })//Hết sản phẩm
+                .when("/quan-ly-don-hang", {
+                    templateUrl: "donhang/quanlydonhang.html",
+                    controller: "quanLyDonHangCtrl"
+                })
+                .when("/chinh-sua-don-hang/:id", {
+                    templateUrl: "donhang/chinhsuadonhang.html",
+                    controller: "chinhSuaDonHangCtrl"
+                })
+                .when("/chi-tiet-don-hang/:id", {
+                    templateUrl: "donhang/chitietdonhang.html",
+                    controller: "chiTietDonHangCtrl"
+                })
+
+        });
+
+        
+    </script>
+
+    <script src="danhmuc/quanlydanhmuc.js"></script>
+    <script src="danhmuc/taomoidanhmuc.js"></script>
+    <script src="danhmuc/chinhsuadanhmuc.js"></script>
+    <script src="danhmuc/chitietdanhmuc.js"></script>
+
+    <script src="sanpham/quanlysanpham.js"></script>
+    <script src="sanpham/taomoisanpham.js"></script>
+    <script src="sanpham/chinhsuasanpham.js"></script>
+    <script src="sanpham/chitietsanpham.js"></script>
+
+    <script src="donhang/quanlydonhang.js"></script>
+    <script src="donhang/chinhsuadonhang.js"></script>
+    <script src="donhang/chitietdonhang.js"></script>
+
+
+</head>
+
+<body ng-app="myApp">
+    <!-- Khu vực header -->
+    <nav class="navbar navbar-expand-sm bg-danger shadow ">
+        <div class="container-fluid">
+            <!-- Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="" href="#">
+                        <img src="https://theme.hstatic.net/1000006063/1000748098/14/logo.png?v=16980" alt=""
+                            style="height: 50px;">
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav" ng-controller="navbarCtrl">
+                <li class="nav-item">
+                    <a class="nav-link disabled text-light" href="#">Xin chào, {{username}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#">Log out</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+    <!-- Khu vực nội dung -->
+    <div class="d-flex">
+        <!-- Bên trái sidebar -->
+        <div class="bg-black" style="width: 300px; height: calc(100vh - 66px);">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#!quan-ly-danh-muc">Danh sách danh mục</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#!quan-ly-san-pham">Danh sách sản phẩm</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#!quan-ly-don-hang">Danh sách đơn hàng</a>
+                </li>
+            </ul>
+        </div>
+        <!-- Bên phải nội dung chính -->
+        <div class="container mt-3" style="width: calc(100% - 300px);" ng-view>
+            
+        </div>
+    </div>
+</body>
+
+</html>

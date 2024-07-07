@@ -1,0 +1,85 @@
+<div class="container mt-3">
+    <h3 class="text-center">DANH SÁCH ĐƠN HÀNG</h3>
+    <!-- Khu vuc button dieu huong -->
+    <!-- Khu vuc bang du lieu -->
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Sản phẩm của đơn hàng</th>
+                <th>Trạng thái đơn hàng</th>
+                <th>Tương tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in danhSachDonHang ">
+                <td>{{item.id}}</td>
+                <td>{{item.hoTen}}</td>
+                <td style="width: 500px;">
+                    <div class="row" ng-repeat="sanPham in danhSachSanPham" ng-if="sanPham.donHangId == item.id">
+                        <div class="col-2">
+                            <div class="btn position-relative">
+                                <div class="d-flex justify-content-center align-items-center overflow-hidden border rounded" style="height: 50px; width: 50px;">
+                                    <img src="{{sanPham.sanPham.img}}" alt="" class="mh-100 mw-100">
+                                </div>
+                                <span class="badge bg-dark-subtle position-absolute rounded-pill" style="top: -3px; right: -2px;" >{{sanPham.sanPham.soLuong}}</span>
+
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            {{sanPham.sanPham.tenSanPham}}
+                        </div>
+                        <div class="col-3 text-end"> {{sanPham.sanPham.giaNiemYet}} đ</div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-6"><span>Tổng cộng</span><br>(đã bao gồm VAT)</div>
+                        <div class="col-6 text-end"><span class="text-light-emphasis">VNĐ</span> <b
+                                style="font-size: 20px;">{{item.tongGiaTri}} đ</b> </div>
+                    </div>
+                </td>
+                <td>{{item.trangThaiDonHang}}</td>
+                <td style="width: 1px;" class="text-nowrap">
+                    <a href="#!chi-tiet-don-hang/{{item.id}}" class="btn btn-primary"><i class="fa-solid fa-eye"></i>
+                        Xem</a>
+                    <a href="#!chinh-sua-don-hang/{{item.id}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i>
+                        Sửa</a>
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalXacNhanXoa" ng-click="setDonHangId(item.id)"><i
+                            class="fa-solid fa-trash"></i></i> Xóa</button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <div class="modal" id="modalXacNhanXoa">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Xác Nhận Xóa</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa bản ghi?
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button class="btn btn-danger" ng-click="onClickButtonXacNhanXoa()">Xóa</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+

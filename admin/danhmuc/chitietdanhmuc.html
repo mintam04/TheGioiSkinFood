@@ -1,0 +1,16 @@
+<!-- Bên phải nội dung chính -->
+<div class="container mt-3">
+    <h3>Chi tiết danh mục</h3>
+    <div class="mt-3">
+        <span class="form-label">ID</span>
+        <input type="text" class="form-control" disabled  ng-model="danhMuc.id">
+    </div>
+    <div class="mt-3">
+        <span class="form-label">Tên danh mục</span>
+        <input type="text" class="form-control" disabled  ng-model="danhMuc.tenDanhMuc">
+    </div>
+    <div class="text-center mt-3">
+        <a href="#!quan-ly-danh-muc" class="btn btn-secondary "><i class="fa-solid fa-left-long"></i> Quay lại</a>
+        <a href="#!chinh-sua-danh-muc/{{danhMuc.id}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i>Chỉnh Sửa</a>
+    </div>
+</div>

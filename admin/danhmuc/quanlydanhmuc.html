@@ -1,0 +1,53 @@
+<h3 class="text-center">DANH SÁCH DANH MỤC</h3>
+<!-- Khu vuc button dieu huong -->
+
+<div class="d-flex justify-content-end">
+    <!-- class text-end -->
+    <a href="#!tao-moi-danh-muc" class="btn btn-dark"><i class="fa-solid fa-plus"></i> Tạo mới danh mục</a>
+</div>
+<!-- Khu vuc bang du lieu -->
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên Danh mục</th>
+            <th>Tương tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in danhSachDanhMuc">
+            <td>{{item.id}}</td>
+            <td>{{item.tenDanhMuc}}</td>
+            <td style="width: 1px;" class="text-nowrap">
+                <a href="#!chi-tiet-danh-muc/{{item.id}}" class="btn btn-primary"><i class="fa-solid fa-eye"></i>Xem</a>
+                <a href="#!chinh-sua-danh-muc/{{item.id}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Sửa</a>
+                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalXacNhanXoa" ng-click="setDanhMucId(item.id)"><i class="fa-solid fa-trash"></i></i> Xóa</button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+<div class="modal" id="modalXacNhanXoa">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Xác Nhận Xóa</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xóa bản ghi?
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button class="btn btn-danger" ng-click="onClickButtonXacNhanXoa()">Xóa</button>
+            </div>
+
+        </div>
+    </div>
+</div>

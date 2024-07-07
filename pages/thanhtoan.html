@@ -1,0 +1,91 @@
+<div class="container " style="min-height: calc(100vh - 839px);">
+    <div class="row mt-4">
+        <div class="col-6">
+            <h3>THANH TOÁN</h3>
+            <p>Thông tin giao hàng</p>
+            <div class="mt-1">
+                <span class="form-label">Họ và tên</span>
+                <input type="text" name="" id="" class="form-control" ng-model="donHang.hoTen">
+            </div>
+            <div class="mt-1">
+                <span class="form-label">Email</span>
+                <input type="text" name="" id="" class="form-control" ng-model="donHang.email">
+            </div>
+            <div class="mt-1">
+                <span class="form-label">Số điện thoại</span>
+                <input type="text" name="" id="" class="form-control" ng-model="donHang.soDienThoai">
+            </div>
+            <div class="mt-1">
+                <span class="form-label">Địa chỉ</span>
+                <input type="text" name="" id="" class="form-control" ng-model="donHang.diaChi">
+            </div>
+            <div class="mt-1">
+                <span class="form-label">Phương thức thanh toán</span>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="Thanh toán tiền mặt khi nhận hàng (COD)" ng-model="donHang.phuongThucThanhToan" checked>
+                    <label class="form-check-label" for="radio1">Thanh toán tiền mặt khi nhận hàng (COD)</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="[Miễn phí thanh toán] Chuyển khoản qua ngân hàng (VietQR)" ng-model="donHang.phuongThucThanhToan">
+                    <label class="form-check-label" for="radio2">[Miễn phí thanh toán] Chuyển khoản qua ngân hàng (VietQR)</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="radio3" name="optradio" value="[Miễn phí thanh toán] Ví MoMo" ng-model="donHang.phuongThucThanhToan">
+                    <label class="form-check-label" for="radio3">[Miễn phí thanh toán] Ví MoMo</label>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between mt-5">
+                <a href="#!chi-tiet-gio-hang" class="nav-link text-primary"> Giỏ hàng</a>
+                <button class="btn btn-primary rounded-0" ng-click="onClickSubmit()">Hoàn tất thanh toán</button>
+            </div>
+
+        </div>
+        <div class="col-6 bg-light">
+            <div class="container">
+                <div class="row" ng-repeat="sanPham in danhSachSanPham">
+                    <div class="col-2" >
+                        <div class="btn position-relative">
+                            <div class="d-flex justify-content-center align-items-center overflow-hidden border rounded"
+                                style="height: 50px; width: 50px;">
+                                <img src="{{sanPham.img}}"
+                                    alt="" class="mh-100 mw-100">
+                            </div>
+                            <span class="badge bg-dark-subtle position-absolute rounded-pill"
+                                style="top: -3px; right: -2px;">{{sanPham.soLuong}}</span>
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        {{sanPham.tenSanPham}}
+                    </div>
+                    <div class="col-3 text-end">{{sanPham.giaNiemYet}} đ</div>
+                </div>
+                
+
+                <hr>
+                <div class="row">
+                    <div class="col-6">Tạm tính</div>
+                    <div class="col-6 text-end">{{tongGiaTriDonHang}} đ</div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Phí vận chuyển</div>
+                    <div class="col-6 text-end">___ </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6"><span>Tổng cộng</span><br>(đã bao gồm VAT)</div>
+                    <div class="col-6 text-end"><span class="text-light-emphasis">VNĐ</span> <b
+                            style="font-size: 20px;">{{tongGiaTriDonHang}} đ</b> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="alert alert-danger mt-3" ng-if="validateForm.trangThai === false">
+        <strong>Form không hợp lệ</strong>
+        <br>
+        {{validateForm.noiDung}}
+    </div>
+
+</div>
+

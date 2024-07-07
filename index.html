@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="lib/bootstrap.min.css">
+  <script src="lib/font-fontawesome-ae333ffef2.js"></script>
+  <script src="lib/bootstrap.bundle.min.js"></script>
+
+
+  <script src="lib/angular.min.js"></script>
+  <script src="lib/angular-route.js"></script>
+
+
+  <script>
+    var app = angular.module("myApp", ['ngRoute']);
+
+    app.controller('navbarCtrl', function ($scope, $location, $http) {
+      var urlParams = new URLSearchParams(window.location.search);
+      $scope.userId = urlParams.get('userId');
+
+      $scope.soLuong = 0;
+
+      // Gọi API để lấy số lượng sản phẩm trong giỏ hàng
+      $http({
+        method: "GET",
+        url: "http://localhost:3000/gio-hang/" + $scope.userId,
+      }).then(function (response) {
+          $scope.danhSachGioHang = response.data;
+          $scope.soLuong = $scope.danhSachGioHang.tongSoLuong;
+
+      })
+
+      $scope.checkLoggedIn = function () {
+        if ($scope.userId) {
+          $scope.isLoggedIn = true;
+        } else {
+          $scope.isLoggedIn = false;
+        }
+      };
+      // Gọi hàm kiểm tra khi trang được load
+      $scope.checkLoggedIn();
+
+      $scope.showSlide = $location.path() !== '/';
+      // $scope.formSearch = $location.path() !== '/tim-kiem-san-pham';
+
+      $scope.$on('$routeChangeSuccess', function () {
+        $scope.showSlide = $location.path() === '/';
+        // $scope.formSearch = $location.path() === '/tim-kiem-san-pham';
+      });
+
+    });
+
+    // 4. Khai báo $routeProvider
+    app.config(function ($routeProvider) {
+      $routeProvider
+        .when("/", {
+          templateUrl: "pages/danhsachsanpham.html",
+          controller: "danhSachSanPhamCtrl"
+        })
+        .when("/chi-tiet-san-pham/:id", {
+          templateUrl: "pages/chitietsanpham.html",
+          controller: "chiTietSanPhamCtrl"
+        })
+        .when("/chi-tiet-gio-hang/:id", {
+          templateUrl: "pages/chitietgiohang.html",
+          controller: "chiTietGioHangCtrl"
+        })
+        .when("/thanh-toan/:id", {
+          templateUrl: "pages/thanhtoan.html",
+          controller: "thanhToanCtrl"
+        })
+        .when("/tim-kiem-san-pham", {
+          templateUrl: "pages/timkiemsanpham.html",
+          controller: "timKiemSanPhamCtrl"
+        })
+        .when("/xac-nhan-don-hang", {
+          templateUrl: "pages/xacnhandonhang.html",
+          controller: "xacNhanDonHangCtrl"
+        })
+
+
+    });
+
+    app.factory('SharedService', function() {
+    var chiTietSanPham = {};
+
+    function setChiTietSanPham(data) {
+        chiTietSanPham = data;
+    }
+
+    function getChiTietSanPham() {
+        return chiTietSanPham;
+    }
+
+    return {
+        setChiTietSanPham: setChiTietSanPham,
+        getChiTietSanPham: getChiTietSanPham
+    };
+});
+
+
+  </script>
+  <script src="pages/danhsachsanpham.js"></script>
+  <script src="pages/chitietgiohang.js"></script>
+  <script src="pages/chitietsanpham.js"></script>
+  <script src="pages/thanhtoan.js"></script>
+  <script src="pages/timkiemsanpham.js"></script>
+  <script src="pages/xacnhandonhang.js"></script>
+
+</head>
+
+
+<body ng-app="myApp" ng-controller="navbarCtrl">
+  <nav class="navbar navbar-expand-sm bg-danger navbar-dark">
+    <div class="container">
+      <!-- Links -->
+      <div class="d-flex align-items-center">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="#!/">
+              <img src="https://theme.hstatic.net/1000006063/1000748098/14/logo.png?v=16980" alt=""
+                style="width: 50px; height: 50px;">
+            </a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ms-5">
+          <li class="nav-item">
+            <a class="nav-link text-light" href="#" a>Sale</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="#" a>Trang điểm</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="#" a>Chăm sóc da mặt</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="#" a>Chăm sóc da cơ thể</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="" a>Nước hoa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="#!tim-kiem-san-pham"><i class="fa-solid fa-magnifying-glass"></i></a>
+          </li>
+        </ul>
+      </div>
+      <!-- 
+      <form class="d-flex" ng-controller="timKiemSanPhamCtrl" ng-if="formSearch">
+        <input class="form-control me-2" type="text" placeholder="Search" ng-model="search">
+        <button class="btn btn-dark" type="button" ng-click="onClickTimKiemSanPham()"><i class="fa-solid fa-magnifying-glass" ></i></button>
+      </form> -->
+
+      <div class="d-flex align-items-center" ng-controller="navbarCtrl">
+        <ul class="navbar-nav">
+          <li class="nav-item" ng-hide="isLoggedIn">
+            <a class="nav-link text-light" href="dangnhap.html">Đăng nhập</a>
+          </li>
+          <li class="nav-item" ng-hide="isLoggedIn">
+            <a class="btn btn-dark rounded-pill" href="dangky.html">Đăng ký</a>
+          </li>
+          <li class="nav-item" ng-show="isLoggedIn">
+            <a class="nav-link text-light" href="">Xin chào, {{userId}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light btn position-relative" href="#!chi-tiet-gio-hang/{{userId}}"><i
+                class="fa-solid fa-cart-shopping fa-lg"></i><span class="badge bg-dark rounded-pill position-absolute"
+                style="top: -5px; right: -14px;">{{soLuong}}</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </nav>
+  <!-- Slide -->
+  <div class="container " style="min-height: calc(100vh - 123px);">
+    <div id="demo" class="carousel slide overflow-hidden" data-bs-ride="carousel" style="height: 303px;"
+      ng-if="showSlide">
+      <!-- Indicators/dots -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+      </div>
+      <!-- The slideshow/carousel -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://file.hstatic.net/1000006063/file/home_slider_4_d_1729ab798f0d41f78a41997608eb6be1.jpg"
+            alt="" class="d-block w-100">
+        </div>
+        <div class="carousel-item">
+          <img
+            src="https://file.hstatic.net/1000006063/file/banner_slider_1920_x_530_px_3565a6f9af4b4cf592beaaec152b7b45.jpg"
+            alt="" class="d-block w-100">
+        </div>
+        <div class="carousel-item">
+          <img
+            src="https://file.hstatic.net/1000006063/file/web_pc_-_bill_to_qua_to_-_1920x530px_287e6a8560b74552b832319224a93bc0.png"
+            alt="" class="d-block w-100">
+        </div>
+      </div>
+
+      <!-- Left and right controls/icons -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+    <div>
+      <!-- Khu vuc noi dung chinh -->
+      <div class="mt-4 mb-4" ng-view>
+
+
+      </div>
+
+    </div>
+  </div>
+
+  </div>
+
+  <div class="container-fluid bg-dark border-top pt-3 pb-3  text-light">
+    <div class="row m-4">
+      <div class="col-3">
+        <h6>THÔNG TIN LIÊN HỆ</h6>
+        Hotline: 1900636510 (8:00-21:00) <br>
+        • Hợp tác kinh doanh hàng hoá:<br> sales@thegioiskinfood.com<br>
+        • Hợp tác truyền thông/ Quảng cáo:<br> marketing@thegioiskinfood.com<br>
+        • Hợp tác cho thuê mặt bằng:<br> leasing@thegioiskinfood.com<br>
+        • Tuyển dụng:<br> tuyendung@thegioiskinfood.com<br>
+
+        Công ty TNHH MTV thương mại dịch vụ Blue Ocean<br>
+        Giấy CNĐKDN Số:0316037655 do sở kế hoạch và đầu tư cấp ngày 25/11/2019<br>
+      </div>
+      <div class="col-3">
+        <h6>DANH MỤC</h6>
+        Home<br>
+        Sale<br>
+        Bán chạy<br>
+        New<br>
+        Chăm sóc da<br>
+        Trang điểm<br>
+        Thương hiệu<br>
+        Tạp chí làm đẹp<br>
+      </div>
+      <div class="col-3">
+        <h6>VỀ CHÚNG TÔI</h6>
+        Sơ đồ website<br>
+        Chứng chỉ đại lý chính hãng<br>
+        Phương thức thanh toán<br>
+        Chính sách trả hàng - hoàn tiền<br>
+        Chính sách giao hàng<br>
+        Chính sách đổi trả<br>
+        Chính sách bảo mật<br>
+        Điều khoản mua bán<br>
+        Yêu cầu xuất hóa đơn (vat)<br>
+        Tích điểm đổi quà<br>
+        Tuyển dụng<br>
+        Liên hệ<br>
+      </div>
+      <div class="col-3">
+        <h6>KẾT NỐI VỚI CHÚNG TÔI</h6>
+        <br>
+        <i class="fa-brands fa-facebook-f fa-2xl"></i> <i class="fa-brands fa-instagram fa-2xl"></i> <i
+          class="fa-brands fa-tiktok fa-2xl"></i>
+      </div>
+
+    </div>
+    <div class="row mt-3 text-center">
+      <div class="col">
+        <h5>Hệ thống cửa hàng</h5>
+      </div>
+    </div>
+    <div class="row m-4">
+      <div class="col-4">
+        <h6>
+          <i class="fa fa-home"></i> TP. HỒ CHÍ MINH
+        </h6>
+        <div>
+          <p>Quận 3: 365 Lê Văn Sỹ P.12 (8:30-22:00)</p>
+          <p> Quận Tân Bình: 100 Hoàng Hoa Thám P.12 (8:30-22:00)</p>
+          <p> Quận 5: 159 Nguyễn Văn Cừ P.2 (8:30-22:00)</p>
+          <p> Quận Bình Thạnh: 94 Đường D5 P.25 (8:30-22:00)</p>
+          <p> Thủ Đức: 366 Võ Văn Ngân P.Bình Thọ (8:30-22:00)</p>
+          <p> Gò Vấp: 15 Phan Văn Trị P.7 (8:30-22:00)</p>
+
+        </div>
+      </div>
+
+      <div class="col-4">
+        <h6>
+          <i class="fa fa-home"></i> ĐÔNG NAM BỘ
+        </h6>
+        <div>
+          <p>Đồng Nai: 278 Võ Thị Sáu P.Thống Nhất Biên Hòa (8:30-22:00)</p>
+        </div>
+      </div>
+      <div class="col-4">
+        <h6>
+          <i class="fa fa-home"></i> HÀ NỘI
+        </h6>
+        <div>
+          <p>240 Đường Nguyễn Trãi P.Trung Văn (cách Đại Học Hà Nội 50m) (8:30-22:00)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="pages/danhsachsanpham.js"></script>
+  <script src="pages/chitietgiohang.js"></script>
+  <script src="pages/chitietsanpham.js"></script>
+  <script src="pages/thanhtoan.js"></script>
+  <script src="pages/timkiemsanpham.js"></script>
+  <script src="pages/xacnhandonhang.js"></script>
+
+</body>
+
+</html>

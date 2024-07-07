@@ -1,0 +1,27 @@
+<div ng-controller="timKiemSanPhamCtrl">
+    <form class="d-flex">
+      <input class="form-control me-2" type="text" placeholder="Search" ng-model="search">
+      <button class="btn btn-dark" type="button" ng-click="onClickTimKiemSanPham()"><i class="fa-solid fa-magnifying-glass" ></i></button>
+  </form>
+    <!-- Khu vuc tieu de trang -->
+    <h3 class="text-center mt-4">Danh sách sản phẩm tìm kiếm</h3>
+    <!-- Khu vuc danh sach san pham -->
+    <div class="row mt-4">
+      <div class="col-3 mb-5" ng-repeat="item in timKiem">
+        <div class="card" style="width: 18rem;">
+          <img src="{{item.img}}" alt="" class="mh-100 mw-100">
+          <div class="card-body">
+            <h5 class="card-title">{{item.thuongHieu}}</h5>
+            <h1 class="card-text h6" style="height: 72px;">{{item.tenSanPham}}</h1>
+            <div class="d-flex justify-content-between mb-4">
+              <div class="text-decoration-line-through">{{item.giaBan}} đ</div>
+              <div class="text-danger">{{item.giaNiemYet}} đ</div>
+            </div>
+            <a href="#!chi-tiet-san-pham/{{item.id}}" class="btn btn-danger w-100">Mua ngay</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ -
+

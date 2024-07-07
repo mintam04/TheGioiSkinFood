@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <script src="lib/bootstrap.bundle.min.js"></script>
+    <script src="lib/font-fontawesome-ae333ffef2.js"></script>
+
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.js"></script>
+
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('dangKyCtrl', function ($scope, $http) {
+            console.log("Khai báo dangKyCtrl thành công");
+            $scope.user = {
+                username: "",
+                email: "",
+                password: "",
+                role: 0
+            }
+            //Cần 1 biến  lưu trạng thái , nội dung validate
+            $scope.validateForm = {
+                trangThai: true, //true = form hop le
+                noiDung: ""
+            }
+
+            //Liên kết biến với html
+            //Sử dụng ng-model
+
+
+
+            //Bắt sự kiện click button submit
+            $scope.onClickSubmit = function () {
+                console.log("Gọi hàm onClickSubmit() thành công");
+                console.log("Giá trị người dùng nhập: ", $scope.user);
+
+                //Reset form
+                $scope.validateForm.trangThai = true;
+                $scope.validateForm.noiDung = "";
+
+                //Validate dữ liệu nhập
+                if ($scope.user.username === "") {
+                    $scope.validateForm.trangThai = false;
+                    $scope.validateForm.noiDung = "Username là trường bắt buộc";
+                    return;
+                }
+                if ($scope.user.email === "") {
+                    $scope.validateForm.trangThai = false;
+                    $scope.validateForm.noiDung = "Email là trường bắt buộc";
+                    return;
+                }
+                if ($scope.user.password === "") {
+                    $scope.validateForm.trangThai = false;
+                    $scope.validateForm.noiDung = "Password là trường bắt buộc";
+                    return;
+                }
+
+
+                //Call api để tạo mới dữ liệu
+                $http({
+                    method: "POST",
+                    url: "http://localhost:3000/user",
+                    data: $scope.user
+                }).then(function (response) {
+                    var userId = response.data.id;
+
+                    // Tạo giỏ hàng mới cho người dùng với userId vừa nhận được
+                    var gioHangMoi = {
+                        id: userId, // Sử dụng userId làm id của giỏ hàng
+                        userId: userId, // Gán userId cho giỏ hàng
+                        sanPham: [],
+                        tongSoLuong: 0,
+                        tongGiaTriDonHang: 0
+                    };
+
+                    // Gọi API để tạo giỏ hàng mới
+                    $http({
+                        method: 'POST',
+                        url: 'http://localhost:3000/gio-hang',
+                        data: gioHangMoi
+                    }).then(function (response) {
+                        alert("Đăng ký thành công");
+                        window.location.href = "dangnhap.html";
+                    });
+                })
+
+            }//Kết thúc hàm onClick
+
+        });
+
+
+    </script>
+</head>
+
+<body class="bg-danger text-white" ng-app="myApp">
+    <div class="container mt-5 " ng-controller="dangKyCtrl">
+        <div class="row justify-content-center " style="height: 400px;">
+            <div class="col-3"></div>
+            <div class="col-6 mb-5 shadow rounded">
+                <h2 class="text-center">Đăng ký</h2>
+                <form>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="Enter your username"
+                            ng-model="user.username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email"
+                            ng-model="user.email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password"
+                            ng-model="user.password">
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-dark w-100" ng-click="onClickSubmit()">Đăng ký</button>
+                        </div>
+                        <div class="col-6">
+                            <a href="/dangnhap.html" class="btn btn-light w-100">Đăng nhập</a>
+                        </div>
+                    </div>   
+                    <div class="alert alert-light mt-3" ng-if="validateForm.trangThai === false">
+                        <strong>Form không hợp lệ</strong>
+                        <br>
+                        {{validateForm.noiDung}}
+                    </div>                 
+                </form>
+            </div>
+            <div class="col-3">
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>

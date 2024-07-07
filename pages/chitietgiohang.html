@@ -1,0 +1,98 @@
+<div class="container" style="min-height: calc(100vh - 839px);">
+    <div class="row mt-4">
+        <div class="col-9">
+            <h3>GIỎ HÀNG</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>SẢN PHẨM</th>
+                        <th></th>
+                        <th>SỐ LƯỢNG</th>
+                        <th>GIÁ</th>
+                        <th>TỔNG</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="sanPham in danhSachSanPham">
+                        <td>
+                            <div class="d-flex justify-content-center align-items-center overflow-hidden"
+                                style="height: 160px; width: 160px;">
+                                <img ng-src="{{sanPham.img}}" alt="" class="mh-100 mw-100">
+                            </div>
+                        </td>
+                        <td>
+                            <p style="font-size: 13px;">{{sanPham.thuongHieu}}</p>
+                            <p>{{sanPham.tenSanPham}}</p>
+                            <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalXacNhanXoa" ng-click="setSanPhamId(sanPham.id)"><i class="fa-solid fa-trash"></i></i> Xóa</button>
+                        </td>
+                        <td style="width: 1px;" class="text-nowrap">
+                            <button class="btn btn-light" ng-click="giamSoLuong(sanPham.id)">-</button>
+                            <span class="btn">{{sanPham.soLuong}}</span>
+                            <button class="btn btn-light" ng-click="tangSoLuong(sanPham.id)">+</button>
+                        </td>
+                        
+                        <td style="width: 1px;" class="text-nowrap" >
+                            <div class="text-decoration-line-through" style="font-size: 15px;">
+                                <span>{{sanPham.giaBan}}</span>
+                            </div>
+                            <div class="text-dark" style="font-size: 19px;"><b>{{sanPham.giaNiemYet}}</b></div>
+                        </td>
+                        <td style="width: 1px;" class="text-nowrap">
+                            <div class="text-dark" style="font-size: 19px;"><b>{{sanPham.giaNiemYet * sanPham.soLuong}}</b></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-between">
+                <a href="#!/" class="text-danger"><i class="fa-solid fa-angle-left"></i> Tiếp tục mua sắm</a>
+                <a href="#!thanh-toan/{{userId}}" class="btn btn-danger rounded-0">Tiếp tục thanh toán</a>
+            </div>
+        </div>
+        <div class="col-3">
+            <table class="table table-light">
+                <thead>
+                    <tr>
+                        <th>Tổng đơn hàng</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >
+                        <td>Tạm tính</td>
+                        <td>{{tongGiaTriDonHang}} đ</td>
+                    </tr>
+                    <tr>
+                        <td>Tổng</td>
+                        <td>{{tongGiaTriDonHang}} đ</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modalXacNhanXoa">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Xác Nhận Xóa</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xóa bản ghi?
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button class="btn btn-danger" ng-click="onClickButtonXacNhanXoa()">Xóa</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,46 @@
+<!-- Bên phải nội dung chính -->
+<div class="container mt-3">
+    <h3>Tạo mới sản phẩm</h3>
+    <div class="mt-3">
+        <span class="form-label">ID</span>
+        <input type="text" class="form-control" ng-model="sanPham.id">
+    </div>
+    <div class="mt-3">
+        <span class="form-label">Ảnh</span>
+        <input type="text" class="form-control" ng-model="sanPham.img">
+    </div>
+    <div class="mt-3">
+        <span class="form-label">Tên sản phẩm</span>
+        <input type="text" class="form-control" ng-model="sanPham.tenSanPham">
+    </div>
+    <div class="mt-3">
+        <span class="form-label">Giá Bán</span>
+        <input type="text" class="form-control" ng-model="sanPham.giaBan">
+    </div>
+    <div class="mt-3">
+        <span class="form-label">Giá Niem Yết</span>
+        <input type="text" class="form-control" ng-model="sanPham.giaNiemYet">
+    </div>
+    <div class="mt-3">
+        <span class="form-label">Thương hiệu</span>
+        <input type="text" class="form-control" ng-model="sanPham.thuongHieu">
+    </div>
+    <div class="mt-3">
+        <span class="form-label">Danh mục</span>
+        <select class="form-control" ng-model="sanPham.tenDanhMuc">
+            <option ng-repeat="danhMuc in danhSachDanhMuc" value="{{danhMuc.tenDanhMuc}}" >{{danhMuc.tenDanhMuc}}</option>
+        </select>
+    </div>
+    <div class="text-center mt-3">
+        <a href="#!quan-ly-san-pham" class="btn btn-secondary "><i class="fa-solid fa-left-long"></i> Quay
+            lại</a>
+        <button class="btn btn-success" ng-click="onClickSubmit()"><i class="fa-solid fa-plus"></i> Tạo mới</button>
+    </div>
+
+    <div class="alert alert-danger mt-3" ng-if="validateForm.trangThai === false">
+        <strong>Form không hợp lệ</strong>
+        <br>
+        {{validateForm.noiDung}}
+    </div>
+
+</div>

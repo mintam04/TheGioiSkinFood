@@ -1,0 +1,246 @@
+{
+  "user": [
+    {
+      "id": "01",
+      "username": "nguyenminhtam",
+      "email": "mjntem2004@gmail.com",
+      "password": "123",
+      "role": 1
+    },
+    {
+      "id": "81da",
+      "username": "adf",
+      "email": "mjntem2004@gmail.com",
+      "password": "adf",
+      "role": 0
+    },
+    {
+      "id": "766f",
+      "username": "abv",
+      "email": "nguyenvutandat1910@gmail.com",
+      "password": "abv",
+      "role": 0
+    },
+    {
+      "id": "eb3a",
+      "username": "abc",
+      "email": "mjntem2004@gmail.com",
+      "password": "abc",
+      "role": 0
+    }
+  ],
+  "danh-muc": [
+    {
+      "id": "DM01",
+      "tenDanhMuc": "Chăm sóc da mặt"
+    },
+    {
+      "id": "DM02",
+      "tenDanhMuc": "Chăm sóc da cơ thể"
+    },
+    {
+      "id": "DM03",
+      "tenDanhMuc": "Trang điểm"
+    },
+    {
+      "id": "DM04",
+      "tenDanhMuc": "Nước hoa"
+    },
+    {
+      "id": "DM05",
+      "tenDanhMuc": "test"
+    }
+  ],
+  "san-pham": [
+    {
+      "id": "SP01",
+      "img": "https://product.hstatic.net/1000006063/product/thumb_copy_9aa0e8abbcdb418b943787bba5f36359_1024x1024.png",
+      "tenSanPham": "[FOIF by MERZY] Son Tint Bóng Thuần Chay, Ẩm Mọng, Bền Màu FOIF Juicy Fit Tint 3g",
+      "giaBan": "269000",
+      "giaNiemYet": "108000",
+      "thuongHieu": "FOIF",
+      "tenDanhMuc": "Trang điểm"
+    },
+    {
+      "id": "SP02",
+      "img": "https://product.hstatic.net/1000006063/product/vn-11134207-7qukw-lfjjmhdguyyd7c_073d42adbf8c43e69f3b8403be4033fa_grande.jpg",
+      "tenSanPham": "Gel Dưỡng Làm Trắng Da, Giảm Thâm Nám Hada Labo Perfect White Tranexamic Acid Gel Cream 50g",
+      "giaBan": "260000",
+      "giaNiemYet": "249000",
+      "thuongHieu": "HADA LABO",
+      "tenDanhMuc": "Chăm sóc da mặt"
+    },
+    {
+      "id": "SP03",
+      "img": "https://product.hstatic.net/1000006063/product/z5305498541175_07282db37c06501184d978921084f653_5749016f28664c28b3205cd2cdc0a670_1024x1024.jpg",
+      "tenSanPham": "[NEW][COLOR GLOSS] Son Bóng Thuần Chay Cho Môi Căng Mọng, Mềm Mịn Romand Glasting Color Gloss 4g",
+      "giaBan": "209000",
+      "giaNiemYet": "199000",
+      "thuongHieu": "ROMAND",
+      "tenDanhMuc": "Trang điểm"
+    },
+    {
+      "id": "SP04",
+      "img": "https://product.hstatic.net/1000006063/product/9_5abb540f990444e19209e4827a67af69_1024x1024.png",
+      "tenSanPham": "[Màu 1-17] Son Tint Nước Siêu Lì, Lâu Trôi Romand Glasting Water Tint 4g",
+      "giaBan": "289000",
+      "giaNiemYet": "144000",
+      "thuongHieu": "ROMAND",
+      "tenDanhMuc": "Trang điểm"
+    },
+    {
+      "id": "SP05",
+      "img": "https://product.hstatic.net/1000006063/product/2_95f61eb8f18d47fc97d43b92c0211ed1_1024x1024.png",
+      "tenSanPham": "Nước Tẩy Trang Làm Sạch Tươi Mát, Dưỡng Ẩm Cho Da L'Oreal 3-in-1 Micellar Water",
+      "giaBan": "538000",
+      "giaNiemYet": "398000",
+      "thuongHieu": "L'OREAL",
+      "tenDanhMuc": "Chăm sóc da mặt"
+    },
+    {
+      "id": "SP06",
+      "img": "https://product.hstatic.net/1000006063/product/52.12_aacda19786224af49cf1812b1baeb97d_1024x1024.jpg",
+      "tenSanPham": "Kem Chống Nắng Mịn Nhẹ, Bảo Vệ Da, Ngăn Ngừa Lão Hóa L'Oreal UV Defender Serum Protector SPF 50+/PA++++",
+      "giaBan": "379000",
+      "giaNiemYet": "299000",
+      "thuongHieu": "L'OREAL",
+      "tenDanhMuc": "Chăm sóc da mặt"
+    },
+    {
+      "id": "SP07",
+      "img": "https://product.hstatic.net/1000006063/product/marc_jacobs_2_866f323450024e33aa20e7fab0b73d65_1024x1024.jpg",
+      "tenSanPham": "Nước Hoa Cao Cấp Hương Thơm Ngọt Ngào, Sang Trọng Marc Jacobs Daisy Eau So Intense Eau De Parfum",
+      "giaBan": "2290000",
+      "giaNiemYet": "1699000",
+      "thuongHieu": "MARC JACOBS",
+      "tenDanhMuc": "Nước hoa"
+    },
+    {
+      "id": "SP08",
+      "img": "https://product.hstatic.net/1000006063/product/12_d16270eb8ba4440ca9086a2ea5b653e7_1024x1024.png",
+      "tenSanPham": "Serum Skin1004 Tinh Chất Rau Má Làm Dịu, Hỗ Trợ Dưỡng Sáng, Mờ Thâm Cho Da Nhạy Cảm Skin1004 Madagascar Centella Asiatica 100 Ampoule",
+      "giaBan": "475000",
+      "giaNiemYet": "309000",
+      "thuongHieu": "SKIN1004",
+      "tenDanhMuc": "Chăm sóc da mặt"
+    },
+    {
+      "id": "SP09",
+      "img": "https://product.hstatic.net/1000006063/product/1_b30b027d02404039aae2198f1e20808e_1024x1024.jpg",
+      "tenSanPham": "Sữa Tắm Dưỡng Ẩm, Trắng Da Chiết Xuất Ý Dĩ Nhật Bản Hatomugi Moisturizing & Washing The Body Soap 800ml",
+      "giaBan": "199000",
+      "giaNiemYet": "89000",
+      "thuongHieu": "HATOMUGI",
+      "tenDanhMuc": "Chăm sóc da cơ thể"
+    },
+    {
+      "id": "SP10",
+      "img": "https://product.hstatic.net/1000006063/product/15_90fead4299cf41db8462d9a79a37e59c_1024x1024.png",
+      "tenSanPham": "Bộ Sưu Tập Phiên Bản Giới Hạn Romand x Sanrio My Melody Kuromi",
+      "giaBan": "269000",
+      "giaNiemYet": "159000",
+      "thuongHieu": "ROMAND",
+      "tenDanhMuc": "Trang điểm"
+    }
+  ],
+  "don-hang": [
+    {
+      "id": "DH01",
+      "hoTen": "Nguyễn Minh Tâm",
+      "email": "mjntem2004@gmail.com",
+      "soDienThoai": "0983264473",
+      "diaChi": "Trần Phú, Hoàng Mai, Hà Nội",
+      "phuongThucThanhToan": "Thanh toán tiền mặt khi nhận hàng (COD)",
+      "sanPham": [
+        {
+          "idSanPham": "SP01",
+          "soLuong": 2
+        },
+        {
+          "idSanPham": "SP03",
+          "soLuong": 1
+        }
+      ],
+      "trangThaiDonHang": "Đang chờ"
+    },
+    {
+      "id": "531b",
+      "hoTen": "Nguyễn Minh Thảo",
+      "email": "mjntem2004@gmail.com",
+      "soDienThoai": "0983264473",
+      "diaChi": "Hoàng Mai, Hà Nội",
+      "phuongThucThanhToan": "option2",
+      "sanPham": [
+        {
+          "idSanPham": "SP03",
+          "soLuong": 1
+        }
+      ],
+      "trangThaiDonHang": "Đang chờ"
+    },
+    {
+      "id": "720d",
+      "hoTen": "Nguyễn Minh Tâm",
+      "email": "mintam@gmail.com",
+      "soDienThoai": "0983264475",
+      "diaChi": "Hà nội",
+      "phuongThucThanhToan": "[Miễn phí thanh toán] Chuyển khoản qua ngân hàng (VietQR)",
+      "sanPham": [
+        {
+          "idSanPham": "SP01",
+          "soLuong": 1
+        },
+        {
+          "idSanPham": "SP02",
+          "soLuong": 1
+        }
+      ],
+      "trangThaiDonHang": "Giao hàng thành công"
+    }
+  ],
+  "gio-hang": [
+    {
+      "id": "81da",
+      "sanPham": [
+        {
+          "idSanPham": "SP04",
+          "soLuong": 2
+        },
+        {
+          "idSanPham": "SP01",
+          "soLuong": 1
+        },
+        {
+          "idSanPham": "SP02",
+          "soLuong": 1
+        }
+      ],
+      "tongSoLuong": 4,
+      "tongGiaTriDonHang": null
+    },
+    {
+      "id": "766f",
+      "sanPham": [
+        {
+          "idSanPham": "SP01",
+          "soLuong": 1
+        },
+        {
+          "idSanPham": "SP07",
+          "soLuong": 1
+        },
+        {
+          "idSanPham": "SP04",
+          "soLuong": 1
+        }
+      ],
+      "tongSoLuong": 3
+    },
+    {
+      "id": "eb3a",
+      "sanPham": [],
+      "tongSoLuong": 0,
+      "tongGiaTriDonHang": 0
+    }
+  ]
+}

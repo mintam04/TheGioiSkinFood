@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <script src="lib/bootstrap.bundle.min.js"></script>
+    <script src="lib/font-fontawesome-ae333ffef2.js"></script>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.js"></script>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('dangNhapCtrl', function ($scope, $http) {
+            console.log("Khai báo dangNhapCtrl thành công");
+            $scope.user = {
+                username: "",
+                password: "",
+            }
+            //Cần 1 biến  lưu trạng thái , nội dung validate
+            $scope.validateForm = {
+                trangThai: true, //true = form hop le
+                noiDung: ""
+            }
+
+            //Liên kết biến với html
+            //Sử dụng ng-model
+
+            //Bắt sự kiện click button submit
+            $scope.checkDuLieu = function () {
+
+                $scope.validateForm.trangThai = true;
+                $scope.validateForm.noiDung = "";
+    
+                //Validate dữ liệu nhập
+                if($scope.user.username === ""){
+                    $scope.validateForm.trangThai = false;
+                    $scope.validateForm.noiDung = "Username là trường bắt buộc";
+                    return;
+                }
+                if($scope.user.password === ""){
+                    $scope.validateForm.trangThai = false;
+                    $scope.validateForm.noiDung = "Password là trường bắt buộc";
+                    return;
+                }
+
+                $http({
+                    method: "GET",
+                    url: "http://localhost:3000/user"
+                }).then(function (response) {
+                    var loggedIn = false;
+                    response.data.forEach(data => {
+                        if ($scope.user.username === data.username && $scope.user.password === data.password) {
+                            console.log("Id tồn tại và nhập đúng các trường dữ liệu");
+                            if (data.role == 0) {
+                                window.location.href = "index.html?userId=" + data.id; 
+                            } else if (data.role == 1) {
+                                window.location.href = "admin/index.html?userId=" + data.id; 
+                            }
+                            loggedIn = true;
+                        }
+                    });
+
+                    if (!loggedIn) {
+                        alert("Nhập sai tài khoản");
+                    }
+                    
+                    
+                })
+            };
+
+
+            $scope.onClickSubmit = function () {
+                console.log("Gọi hàm onClickSubmit() thành công");
+                console.log("Giá trị người dùng nhập: ", $scope.user);
+
+                // Call API to check if ID exists
+                $scope.checkDuLieu();
+            };
+
+        });
+
+
+    </script>
+</head>
+
+<body class="bg-danger text-white" ng-app="myApp">
+    <div class="container mt-5" ng-controller="dangNhapCtrl">
+        <div class="row justify-content-center" style="height: 325px;">
+            <div class="col-3"></div>
+            <div class="col-6 mb-5 shadow rounded">
+                <h2 class="text-center">Đăng nhập</h2>
+                <form>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="Enter your username"
+                            ng-model="user.username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password"
+                            ng-model="user.password">
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-dark w-100" ng-click="onClickSubmit()">Đăng nhập</button>
+                        </div>
+                        <div class="col-6">
+                            <a href="/dangky.html" class="btn btn-light w-100">Đăng ký</a>
+                        </div>
+                    </div>   
+                    <div class="alert alert-light mt-3" ng-if="validateForm.trangThai === false">
+                        <strong>Form không hợp lệ</strong> 
+                        <br>
+                        {{validateForm.noiDung}}
+                    </div>
+                </form>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+</body>
+
+</html>
